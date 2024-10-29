@@ -1,0 +1,117 @@
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* More modern font */
+    background-color: #eef2f5; /* Light grey background for a softer look */
+    margin: 0;
+    padding: 0;
+}
+
+/* Container Styles */
+.container {
+    max-width: 900px; /* Increased max width for a spacious look */
+    margin: 30px auto; /* Centered with top/bottom spacing */
+    background: #ffffff; /* Clean white background */
+    padding: 30px; /* More padding for a spacious feel */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Enhanced shadow for depth */
+}
+
+/* Headings */
+h1, h2 {
+    color: #333; /* Darker text for contrast */
+    font-weight: 600; /* Slightly bolder font for prominence */
+    margin-bottom: 20px; /* Space below headings */
+}
+
+/* Table Styles */
+table {
+    width: 100%; /* Full width table */
+    border-collapse: collapse; /* Collapsed borders for a cleaner look */
+    margin-bottom: 20px; /* Space below the table */
+}
+
+table, th, td {
+    border: 1px solid #ddd; /* Light borders */
+}
+
+th, td {
+    padding: 12px; /* Increased padding for better touch targets */
+    text-align: left;
+    font-size: 16px; /* Slightly larger font for readability */
+}
+
+/* Alternate Row Colors */
+tr:nth-child(even) {
+    background-color: #f7f7f7; /* Light grey for alternate rows */
+}
+
+tr:hover {
+    background-color: #e2e6ea; /* Darker grey on hover for interactivity */
+}
+
+/* Action Links */
+.actions {
+    margin: 20px 0; /* Space around actions */
+}
+
+.actions a {
+    margin: 10px 5px;
+    padding: 12px 20px; /* More padding for button-like appearance */
+    color: #ffffff;
+    background-color: #007BFF; /* Bootstrap primary color */
+    text-decoration: none;
+    border-radius: 6px; /* Slightly rounded corners */
+    font-weight: 500; /* Medium weight for better readability */
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+.actions a:hover {
+    background-color: #0056b3; /* Darker on hover */
+}
+
+/* Search Bar */
+.search {
+    display: flex; /* Flexbox for alignment */
+    align-items: center; /* Center align items */
+    margin: 20px 0; /* Space around the search bar */
+}
+
+.search input[type="text"] {
+    padding: 12px; /* Increased padding for comfort */
+    flex: 1; /* Takes available space */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 4px; /* Rounded corners */
+    transition: border-color 0.3s ease; /* Smooth transition for border */
+}
+
+.search input[type="text"]:focus {
+    border-color: #007BFF; /* Focus effect */
+    outline: none; /* Remove outline */
+}
+
+/* Buttons */
+button {
+    padding: 12px 20px; /* Increased padding for a better touch area */
+    background-color: #28a745; /* Bootstrap success color */
+    color: white;
+    border: none;
+    border-radius: 6px; /* Rounded corners */
+    font-size: 16px; /* Increase font size for better readability */
+    cursor: pointer; /* Change cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px; /* Less padding on small screens */
+    }
+
+    .search input[type="text"] {
+        width: 100%; /* Full width on smaller screens */
+    }
+}

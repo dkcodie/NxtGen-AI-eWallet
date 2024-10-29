@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/styles.css">  <!-- Link to your common CSS file -->
+  <link rel="stylesheet" href="/css/dashboard.css"> <!-- Link to your Dashboard-specific CSS file -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js for chart -->
+
+  <style>
+    /* Custom styles for a futuristic look */
+    body {
+      background-color: #f8f9fa;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .user-details, .transactions, .transfer-funds, .chart-container {
+      width: 100%;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+    h1, h2 {
+      color: #343a40;
+    }
+    .actions a {
+      margin: 0 10px;
+    }
+    .chart-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .bar-chart {
+      flex-grow: 1;
+      max-width: 600px;
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="container my-5">
+  <h1 class="text-center mb-4">Welcome to Your Dashboard</h1>
+
+  <div class="user-details mb-4">
+    <h2>User Details:</h2>
+    <table class="table table-bordered">
+      <thead class="table-dark">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Wallet Balance</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td th:text="${user.name}">User Name</td>
+        <td th:text="${user.email}">User Email</td>
+        <td>$100,000</td> <!-- Always display $100,000 -->
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="transactions mb-4">
+    <h2>Your Transactions:</h2>
+    <table class="table table-bordered">
+      <thead class="table-dark">
+      <tr>
+        <th>Transaction ID</th>
+        <th>Amount</th>
+        <th>Date</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="transaction : ${transactions}">
+        <td th:text="${transaction.id}">1</td>
+        <td th:text="${transaction.amount}">100.00</td>
+        <td th:text="${#dates.format(transaction.date, 'yyyy-MM-dd HH:mm')}">2024-10-29 12:00</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="transfer-funds mb-4">
+    <h2>Transfer Funds</h2>
+    <form action="#" th:action="@{/transfer}" method="post" class="form-inline">
+      <div class="mb-3">
+        <label for="email" class="form-label">Recipient Email:</label>
+        <input type="email" id="email" name="email" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="amount" class="form-label">Amount:</label>
+        <input type="number" id="amount" name="amount" min="1" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Transfer</button>
+    </form>
+  </div>
+
+  <div class="chart-container d-flex mb-4">
+    <canvas id="myBarChart" class="bar-chart" width="400" height="200"></canvas> <!-- Canvas for Bar Chart -->
+  </div>
+
+  <div class="actions text-center">
+    <a href="/logout" class="btn btn-danger">Logout</a>
+    <a href="/users" class="btn btn-info">Available Users</a>
+    <a href="/generate-pdf" class="btn btn-primary">Generate PDF</a>
+  </div>
+</div>
+
+<script>
+    // Sample data for bar chart
+    const ctx = document.getElementById('myBarChart').getContext('2d');
+    const myBarChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Completed', 'Pending', 'Failed'],
+            datasets: [{
+                label: 'Transaction Status',
+                data: [12, 5, 2], // Sample data
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(255, 99, 132, 0.6)',
+                    'rgba(255, 206, 86, 0.6)'
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(255, 206, 86, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Transactions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Link to your CSS file -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .success-message {
+            color: green;
+            margin-bottom: 20px;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Your Transactions</h1>
+
+    <div class="success-message" th:if="${successMessage}">
+        <p th:text="${successMessage}">Transfer successful!</p>
+    </div>
+
+    <div class="search-bar">
+        <label for="search">Search by Name:</label>
+        <input type="text" id="search" onkeyup="searchTransactions()" placeholder="Search for names..">
+    </div>
+
+    <table id="transaction-table">
+        <thead>
+        <tr>
+            <th onclick="sortTable(0)">Transaction ID</th>
+            <th onclick="sortTable(1)">Recipient Name</th>
+            <th onclick="sortTable(2)">Amount</th>
+            <th onclick="sortTable(3)">Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="transaction : ${transactions}">
+            <td th:text="${transaction.id}">1</td>
+            <td th:text="${transaction.recipientName}">John Doe</td>
+            <td th:text="${transaction.amount}">100.00</td>
+            <td th:text="${#dates.format(transaction.date, 'yyyy-MM-dd HH:mm')}">2024-10-29 12:00</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="actions">
+        <a href="/dashboard">Go to Dashboard</a>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+
+<script>
+    // Function to search transactions based on recipient name
+    function searchTransactions() {
+        const input = document.getElementById('search');
+        const filter = input.value.toLowerCase();
+        const table = document.getElementById("transaction-table");
+        const trs = table.getElementsByTagName("tr");
+
+        for (let i = 1; i < trs.length; i++) {
+            const td = trs[i].getElementsByTagName("td")[1]; // Assuming recipient name is in the second column
+            if (td) {
+                const txtValue = td.textContent || td.innerText;
+                trs[i].style.display = txtValue.toLowerCase().indexOf(filter) > -1 ? "" : "none";
+            }
+        }
+    }
+
+    // Function to sort the transaction table by column
+    function sortTable(n) {
+        const table = document.getElementById("transaction-table");
+        let switching = true;
+        let shouldSwitch, dir = "asc"; // Set the sorting direction to ascending
+        let switchCount = 0;
+
+        while (switching) {
+            switching = false;
+            const rows = table.rows;
+            for (let i = 1; i < (rows.length - 1); i++) {
+                shouldSwitch = false;
+                const x = rows[i].getElementsByTagName("TD")[n];
+                const y = rows[i + 1].getElementsByTagName("TD")[n];
+
+                if (dir === "asc") {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir === "desc") {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                switchCount++;
+            } else {
+                if (switchCount === 0 && dir === "asc") {
+                    dir = "desc";
+                    switching = true;
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

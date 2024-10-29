@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  ewallet-app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+    depends_on:
+      - db
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_DATABASE: ewallet
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "3306:3306"
