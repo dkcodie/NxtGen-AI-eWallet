@@ -14,6 +14,7 @@ Welcome to the **NxtGen-AI-eWallet-Application**! This innovative digital wallet
 
 ## Project Structure
 
+```
 NxtGen-AI-eWallet-Application
 ├── .idea/
 ├── .mvn/
@@ -79,6 +80,7 @@ NxtGen-AI-eWallet-Application
 │               └── RegistrationLoginApplicationTests.java
 └── target/
 
+```
 
 ## Features
 
@@ -99,11 +101,11 @@ NxtGen-AI-eWallet-Application
   
 ## Technologies Used
 
-- **Backend:** Spring Boot
-- **Frontend:** Thymeleaf
-- **Database:** H2 Database
+- **Backend:** Java,Spring Boot
+- **Frontend:** Java Script, Html, Css, Thymeleaf
+- **Database:** H2 Database(integrated)
 - **Containerization:** Docker
-- **Version Control:** Git & GitHub
+- **Version Control:** Git, GitHub, Jenkins
 
 ## Getting Started
 
