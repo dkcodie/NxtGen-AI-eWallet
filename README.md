@@ -101,8 +101,8 @@ NxtGen-AI-eWallet-Application
   
 ## Technologies Used
 
-- **Backend:** Java,Spring Boot
-- **Frontend:** Java Script, Html, Css, Thymeleaf
+- **Backend:** Java, Spring Boot
+- **Frontend:** JavaScript, Html, Css, Thymeleaf
 - **Database:** H2 Database(integrated)
 - **Containerization:** Docker
 - **Version Control:** Git, GitHub, Jenkins
