@@ -1,6 +1,6 @@
 # NxtGen-AI-eWallet-Application
 
-Welcome to the **NxtGen-AI-eWallet-Application**! This innovative digital wallet solution is designed to simplify transactions, enhance user experience, and provide a secure environment for managing finances.
+Welcome to the **NxtGen-AI-eWallet-Application**! This innovative digital wallet solution is designed to simplify transactions, enhance user experience, and provide a secure environment for managing finances with AI.
 
 ## Table of Contents
 
